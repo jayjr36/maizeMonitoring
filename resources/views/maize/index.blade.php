@@ -39,7 +39,7 @@
                         var tbody = '';
                         $.each(data, function (key, value) {
                             tbody += '<tr>';
-                            tbody += '<td><img src="' + value.image + '" alt="Image" class="img-fluid" width="100"></td>';
+                            tbody += '<td><img src="' + value.image + '" alt="Image" class="img-fluid" width="100" height="200"></td>';
                             tbody += '<td>' + value.height + ' cm</td>';
                             tbody += '<td>' + value.thickness + ' cm</td>';
                             tbody += '<td>' + value.color + '</td>';
