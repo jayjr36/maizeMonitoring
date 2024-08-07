@@ -35,7 +35,12 @@
                             tbody += '<tr>';
                             tbody += '<td><img src="{{ asset('storage') }}/' + value.image + '" alt="Image" class="img-fluid" width="100" height="200"></td>';
                             tbody += '<td>' + value.height + ' cm</td>';
-                            tbody += '<td>' + value.thickness + ' cm</td>';
+
+                            // Convert thickness from cm to mm
+                            var thicknessInCm = value.thickness.split(' ')[0];
+                            var thicknessInMm = thicknessInCm * 10;
+                            tbody += '<td>' + thicknessInMm + ' mm</td>';
+
                             tbody += '<td>' + value.color + '</td>';
                             tbody += '<td>' + (value.defective ? 'Yes' : 'No') + '</td>';
                             tbody += '<td>' + value.deficiency + '</td>';
