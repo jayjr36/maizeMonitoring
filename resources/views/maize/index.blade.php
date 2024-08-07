@@ -34,11 +34,14 @@
                         $.each(data, function (key, value) {
                             tbody += '<tr>';
                             tbody += '<td><img src="{{ asset('storage') }}/' + value.image + '" alt="Image" class="img-fluid" width="100" height="200"></td>';
-                            tbody += '<td>' + value.height + ' cm</td>';
+                            
+                            // Convert height to 2 decimal places
+                            var heightInCm = parseFloat(value.height).toFixed(2);
+                            tbody += '<td>' + heightInCm + ' cm</td>';
 
-                            // Convert thickness from cm to mm
-                            var thicknessInCm = value.thickness.split(' ')[0];
-                            var thicknessInMm = thicknessInCm * 10;
+                            // Convert thickness from cm to mm and fix to 2 decimal places
+                            var thicknessInCm = parseFloat(value.thickness.split(' ')[0]);
+                            var thicknessInMm = (thicknessInCm * 10).toFixed(2);
                             tbody += '<td>' + thicknessInMm + ' mm</td>';
 
                             tbody += '<td>' + value.color + '</td>';
@@ -62,7 +65,7 @@
             fetchLatestData(); // Initial fetch
 
             // Fetch data every 5 seconds
-            setInterval(fetchLatestData, 2000);
+            setInterval(fetchLatestData, 5000);
         });
     </script>
 @endsection
