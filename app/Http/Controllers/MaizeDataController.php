@@ -77,11 +77,11 @@ class MaizeDataController extends Controller
     protected function generateSuggestion($deficiency)
     {
         switch (strtolower($deficiency)) {
-            case 'nitrogen':
+            case 'nitrogen deficiency':
                 return 'Add fertilizer';
-            case 'potassium':
+            case 'potassium deficiency':
                 return 'Add wood ash, conduct soil test';
-            case 'phosphorus':
+            case 'phosphorus deficiency':
                 return 'Check soil pH';
             default:
                 return 'No suggestion available';
