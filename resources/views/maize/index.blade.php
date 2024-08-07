@@ -1,13 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}">
-  
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   
-    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> --}}
-
    
     <div class="container mt-4">
         <h3 class="mb-4 text-center">Maize Monitoring Data</h3>
@@ -21,6 +14,7 @@
                     <th>Defective</th>
                     <th>Deficiency</th>
                     <th>Suggestion</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,13 +33,20 @@
                         var tbody = '';
                         $.each(data, function (key, value) {
                             tbody += '<tr>';
-                                tbody += '<td><img src="{{ asset('storage') }}/' + value.image + '" alt="Image" class="img-fluid" width="100" height="200"></td>';
-                                tbody += '<td>' + value.height + ' cm</td>';
+                            tbody += '<td><img src="{{ asset('storage') }}/' + value.image + '" alt="Image" class="img-fluid" width="100" height="200"></td>';
+                            tbody += '<td>' + value.height + ' cm</td>';
                             tbody += '<td>' + value.thickness + ' cm</td>';
                             tbody += '<td>' + value.color + '</td>';
                             tbody += '<td>' + (value.defective ? 'Yes' : 'No') + '</td>';
                             tbody += '<td>' + value.deficiency + '</td>';
                             tbody += '<td>' + value.suggestion + '</td>';
+                            
+                            // Format date and time
+                            var createdAt = new Date(value.created_at);
+                            var formattedDate = createdAt.toLocaleDateString();
+                            var formattedTime = createdAt.toLocaleTimeString();
+                            tbody += '<td>' + formattedDate + ' ' + formattedTime + '</td>';
+                            
                             tbody += '</tr>';
                         });
                         $('#maize-table tbody').html(tbody);
